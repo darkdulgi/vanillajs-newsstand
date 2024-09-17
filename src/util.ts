@@ -10,6 +10,7 @@ export const getSubscribeList = () => {
 };
 
 export const pushSubscribe = (id) => {
+  const test;
   let subscribeList = getSubscribeList();
   if (!subscribeList.includes(id)) {
     subscribeList = [...subscribeList, id];

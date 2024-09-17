@@ -4,20 +4,18 @@ let newsLength;
 let news = [];
 
 const switchNewsWithAni = (newsIndex, DOMIndex, isFirst) => {
-  const keyframes = [
-    { transform: "translateY(0%)" },
-    { transform: "translateY(-100%)" },
-  ];
+  const keyframes = [{ transform: "translateY(0%)" }, { transform: "translateY(-100%)" }];
   const options = {
     duration: 500,
   };
 
   $newsPreviewDOMList[DOMIndex].animate(isFirst ? [] : keyframes, isFirst ? {} : options).onfinish = () => {
-    $newsPreviewDOMList[DOMIndex].innerText = news[newsIndex].com + '\n' + news[(newsIndex + 1) % newsLength].com;
+    $newsPreviewDOMList[DOMIndex].innerText = news[newsIndex].com + "\n" + news[(newsIndex + 1) % newsLength].com;
   };
   $newsPreviewDOMList[DOMIndex + 1].animate(isFirst ? [] : keyframes, isFirst ? {} : options).onfinish = () => {
-    $newsPreviewDOMList[DOMIndex + 1].innerText = news[newsIndex].title + '\n' + news[(newsIndex + 1) % newsLength].title;
-  }
+    $newsPreviewDOMList[DOMIndex + 1].innerText =
+      news[newsIndex].title + "\n" + news[(newsIndex + 1) % newsLength].title;
+  };
   $newsPreviewDOMList[DOMIndex + 1].title = news[newsIndex].title;
 };
 
@@ -56,7 +54,7 @@ const loadNews = (_news) => {
       }
     }
     requestAnimationFrame(execPerFrame);
-  }
+  };
   requestAnimationFrame(execPerFrame);
 };
 
@@ -71,4 +69,4 @@ export default function rollingNewsSection(_news) {
   }
 
   loadNews(_news);
-};
+}

@@ -8,13 +8,9 @@ const blueStyle = "invert(44%) sepia(40%) saturate(1022%) hue-rotate(190deg) bri
 const companyPerPage = 24;
 
 let newsCompanyList = [];
-let state = {
+const state = {
   subscribeToggle: "whole",
 };
-
-const insertDOM = () => {
-
-}
 
 const refillCompany = () => {
   $gridDOM.innerHTML = "";
@@ -66,13 +62,11 @@ export default function GridCompanySection(_newsCom) {
       updateDOMstyle(document.querySelector(".paper"), { display: isListButton ? "block" : "none" });
       updateDOMstyle(document.querySelector(".newsgroup"), { display: isListButton ? "flex" : "none" });
       updateDOMstyle($gridDOM, { display: isListButton ? "none" : "grid" });
-    }
-    else if (targetClassName === "whole" || targetClassName === "my") {
+    } else if (targetClassName === "whole" || targetClassName === "my") {
       if (targetClassName !== state.subscribeToggle) {
         state.subscribeToggle = targetClassName;
         refillCompany();
       }
     }
   });
-
 }

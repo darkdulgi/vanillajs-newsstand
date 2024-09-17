@@ -1,6 +1,6 @@
 import rollingNewsSection from "./rolling.js";
 import CategoriesAndNewsSection from "./news.js";
-import GridCompanySection  from "./grid.js";
+import GridCompanySection from "./grid.js";
 
 const $viewDateDOM = document.querySelector(".date");
 
@@ -12,18 +12,18 @@ const loadNews = async () => {
   rollingNewsSection(news);
   CategoriesAndNewsSection(news, newsCom);
   GridCompanySection(newsCom);
-}
+};
 
 const getDate = () => {
   const time = new Date();
   let year = time.getFullYear();
   let month = time.getMonth() + 1;
   let date = time.getDate();
-  const week = ['일', '월', '화', '수', '목', '금', '토'];
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
   let day = time.getDay();
 
-  if (month < 10) month = '0' + month;
-  if (date < 10) date = '0' + date;
+  if (month < 10) month = "0" + month;
+  if (date < 10) date = "0" + date;
   $viewDateDOM.innerText = `${year}. ${month}. ${date} ${week[day]}요일`;
 };
 

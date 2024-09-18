@@ -1,4 +1,4 @@
-import { updateDOMstyle, getSubscribeList, removeSubscribe, pushSubscribe } from "./util.js";
+import { updateDOMstyle, getSubscribeList, removeSubscribe, pushSubscribe } from "../util/util.js";
 
 const $listButtonDOM = document.querySelector(".toggle .list-button");
 const $gridButtonDOM = document.querySelector(".toggle .grid-button");

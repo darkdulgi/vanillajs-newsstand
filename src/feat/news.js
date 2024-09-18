@@ -1,4 +1,4 @@
-import { updateDOMstyle, getSubscribeList, pushSubscribe, removeSubscribe } from "./util.js";
+import { updateDOMstyle, getSubscribeList, pushSubscribe, removeSubscribe } from "../util/util.js";
 
 const $subscribeToggleDOM = document.querySelectorAll(".subscribe-toggle span");
 const $newsgroupDOM = document.querySelector(".newsgroup");

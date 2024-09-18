@@ -25,11 +25,10 @@ const currentCompanyId = () => {
         return getSubscribeList()[state.bigCtg];
 };
 const currentCompanyName = () => {
-    var _a;
     if (state.subscribeToggle === "whole")
         return companyList[state.bigCtg][state.smallCtg].name;
     else if (state.subscribeToggle === "my")
-        return (_a = newsCompanyList.find((news) => news.id === currentCompanyId())) === null || _a === void 0 ? void 0 : _a.name;
+        return newsCompanyList.find((news) => news.id === currentCompanyId())?.name;
 };
 const switchNextCtg = () => {
     if (state.subscribeToggle === "whole") {

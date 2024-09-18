@@ -75,11 +75,11 @@ const refillGroup = () => {
     const isWholeCompany = state.subscribeToggle === "whole";
     updateDOMstyle($subscribeToggleDOM[0], {
         fontWeight: isWholeCompany ? "bold" : "normal",
-        color: isWholeCompany ? "black" : "#879298"
+        color: isWholeCompany ? "black" : "#879298",
     });
     updateDOMstyle($subscribeToggleDOM[1], {
         fontWeight: isWholeCompany ? "normal" : "bold",
-        color: isWholeCompany ? "#879298" : "black"
+        color: isWholeCompany ? "#879298" : "black",
     });
     $newsgroupDOM.innerHTML = "";
     if (state.subscribeToggle === "whole") {
@@ -115,10 +115,7 @@ const refillGroup = () => {
 const fillCtg = () => {
     const DOM = $ctgDOM[state.bigCtg];
     const scrollNum = `${state.subscribeToggle === "whole" ? companyList[state.bigCtg].length : 0}`;
-    const keyframes = [
-        { backgroundPosition: "100%" },
-        { backgroundPosition: "0%" }
-    ];
+    const keyframes = [{ backgroundPosition: "100%" }, { backgroundPosition: "0%" }];
     const options = { duration: 20000 };
     DOM.setAttribute("class", "selected");
     DOM.animate(keyframes, options).onfinish = () => {
@@ -141,13 +138,17 @@ const loseCtg = () => {
     if (!DOM)
         return;
     DOM.setAttribute("class", "unselected");
-    DOM.getAnimations().forEach(ani => ani.cancel());
+    DOM.getAnimations().forEach((ani) => ani.cancel());
     while (DOM.childElementCount > 1) {
         DOM.removeChild(DOM.lastElementChild);
     }
 };
 const fillBottom = () => {
-    const frontNewsList = state.subscribeToggle === "whole" ? newsListObject[categories[state.bigCtg]].filter((news) => news.com === currentCompanyName()) : Object.values(newsListObject).flat().filter(news => news.com === currentCompanyName());
+    const frontNewsList = state.subscribeToggle === "whole"
+        ? newsListObject[categories[state.bigCtg]].filter((news) => news.com === currentCompanyName())
+        : Object.values(newsListObject)
+            .flat()
+            .filter((news) => news.com === currentCompanyName());
     const newsPerPage = 8;
     const newsVisibleDOM = document.querySelector(".paper .news-visible");
     const noNewsDOM = document.querySelector(".paper .no-news");
@@ -182,8 +183,8 @@ export default function CategoriesAndNewsSection(_news, _newsCom) {
     newsListObject = _news;
     newsCompanyList = _newsCom;
     categories.forEach((ctg) => {
-        const comNameList = [...new Set(newsListObject[ctg].map(news => news.com))];
-        companyList = [...companyList, comNameList.map(name => newsCompanyList.find((com) => com.name === name))];
+        const comNameList = [...new Set(newsListObject[ctg].map((news) => news.com))];
+        companyList = [...companyList, comNameList.map((name) => newsCompanyList.find((com) => com.name === name))];
     });
     refillGroup();
     fillBottom();
@@ -208,9 +209,13 @@ export default function CategoriesAndNewsSection(_news, _newsCom) {
         startX = e.pageX - $newsgroupDOM.offsetLeft;
         firstScrollLeft = $newsgroupDOM.scrollLeft;
     });
-    $newsgroupDOM.addEventListener("mouseup", () => { isDown = false; });
-    $newsgroupDOM.addEventListener("mouseleave", () => { isDown = false; });
-    $newsgroupDOM.addEventListener('mousemove', (e) => {
+    $newsgroupDOM.addEventListener("mouseup", () => {
+        isDown = false;
+    });
+    $newsgroupDOM.addEventListener("mouseleave", () => {
+        isDown = false;
+    });
+    $newsgroupDOM.addEventListener("mousemove", (e) => {
         if (!isDown)
             return;
         e.preventDefault();
@@ -240,14 +245,14 @@ export default function CategoriesAndNewsSection(_news, _newsCom) {
         else if (targetClassName === "subscribe-button") {
             const subscribeList = getSubscribeList();
             if (!subscribeList.includes(currentCompanyId())) {
-                $snackbarDOM.getAnimations().forEach(ani => ani.cancel());
+                $snackbarDOM.getAnimations().forEach((ani) => ani.cancel());
                 const keyframes = [
                     { opacity: 0, display: "inline" },
                     { opacity: 1, offset: 0.05 },
                     { opacity: 1, offset: 0.95 },
-                    { opacity: 0, display: "hidden" }
+                    { opacity: 0, display: "hidden" },
                 ];
-                const options = { duration: 5000, };
+                const options = { duration: 5000 };
                 $snackbarDOM.animate(keyframes, options).onfinish = () => {
                     if (state.subscribeToggle !== "my") {
                         state.subscribeToggle = "my";
@@ -263,7 +268,7 @@ export default function CategoriesAndNewsSection(_news, _newsCom) {
             else {
                 updateDOMstyle($unsubscribeAlertDOM, { display: "inline" });
                 document.querySelector(".paper .company-name").innerText = currentCompanyName();
-                $snackbarDOM.getAnimations().forEach(ani => ani.cancel());
+                $snackbarDOM.getAnimations().forEach((ani) => ani.cancel());
             }
         }
         else if (targetClassName === "unsubscribe-yes") {

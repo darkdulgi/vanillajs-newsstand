@@ -16,6 +16,6 @@ export const pushSubscribe = (id) => {
 };
 export const removeSubscribe = (id) => {
     let subscribeList = getSubscribeList();
-    subscribeList = subscribeList.filter(com => com !== id);
+    subscribeList = subscribeList.filter((com) => com !== id);
     localStorage.setItem("subscribe-list", JSON.stringify(subscribeList));
 };

@@ -1,3 +1,9 @@
+//
+//
+//  주의!! 매우 스파게티화된 코드입니다. (Typescript로 마이그레이션 실패)
+//
+//
+
 import { updateDOMstyle, getSubscribeList, pushSubscribe, removeSubscribe } from "../util/util.js";
 
 const $subscribeToggleDOM = document.querySelectorAll(".subscribe-toggle span");
@@ -10,7 +16,15 @@ const $subscribeButtonDOM = document.querySelector(".paper .subscribe-button");
 const $snackbarDOM = document.querySelector(".paper .snackbar");
 const $unsubscribeAlertDOM = document.querySelector(".paper .unsubscribe-alert");
 let $ctgDOM = [];
-const categories = ["종합/경제", "방송/통신", "IT", "영자지", "스포츠/연예", "매거진/전문지", "지역"];
+const categories = [
+  "종합/경제",
+  "방송/통신",
+  "IT",
+  "영자지",
+  "스포츠/연예",
+  "매거진/전문지",
+  "지역",
+];
 
 let newsListObject = {};
 let newsCompanyList = [];
@@ -29,7 +43,8 @@ const currentCompanyId = () => {
 
 const currentCompanyName = () => {
   if (state.subscribeToggle === "whole") return companyList[state.bigCtg][state.smallCtg].name;
-  else if (state.subscribeToggle === "my") return newsCompanyList.find((news) => news.id === currentCompanyId())?.name;
+  else if (state.subscribeToggle === "my")
+    return newsCompanyList.find((news) => news.id === currentCompanyId())?.name;
 };
 
 const switchNextCtg = () => {
@@ -90,7 +105,10 @@ const refillGroup = () => {
     const subscribeList = getSubscribeList();
     let subscribeNameList = [];
     subscribeList.forEach((comId) => {
-      subscribeNameList = [...subscribeNameList, newsCompanyList.find((com) => com.id === comId).name];
+      subscribeNameList = [
+        ...subscribeNameList,
+        newsCompanyList.find((com) => com.id === comId).name,
+      ];
     });
     subscribeNameList.forEach((comName) => {
       insertDOM(comName);
@@ -187,12 +205,15 @@ const fillBottom = () => {
   }
 };
 
-export default function CategoriesAndNewsSection(_news, _newsCom) {
+export default function makeMainboardSection(_news, _newsCom) {
   newsListObject = _news;
   newsCompanyList = _newsCom;
   categories.forEach((ctg) => {
     const comNameList = [...new Set(newsListObject[ctg].map((news) => news.com))];
-    companyList = [...companyList, comNameList.map((name) => newsCompanyList.find((com) => com.name === name))];
+    companyList = [
+      ...companyList,
+      comNameList.map((name) => newsCompanyList.find((com) => com.name === name)),
+    ];
   });
 
   refillGroup();

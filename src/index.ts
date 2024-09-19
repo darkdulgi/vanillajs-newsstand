@@ -1,5 +1,5 @@
 import makeRollingNewsSection from "./feat/rolling/index.js";
-import CategoriesAndNewsSection from "./feat/news.js";
+import makeMainboardSection from "./feat/news.js";
 import GridCompanySection from "./feat/grid.js";
 
 const $viewDateDOM = document.querySelector(".date");
@@ -22,7 +22,7 @@ async function loadNews() {
   const company = await fetch("../data/company.json").then((res) => res.json());
 
   makeRollingNewsSection(news);
-  CategoriesAndNewsSection(news, company);
+  makeMainboardSection(news, company);
   GridCompanySection(company);
 }
 

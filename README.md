@@ -3,8 +3,13 @@
 
 ### 사용기술/패키지
 Markup: HTML5
+
 Style: CSS3
+
 Script: Javascript, Typescript
+
 Linter/Formatter: eslint, prettier
+
 Bundler: -
+
 Transpiler: tsc
